@@ -1,0 +1,70 @@
+<!doctype html>
+<html data-ng-app="">
+<body>
+	Name: <input type="text" data-ng-model="name"/> {{name}}
+	<hr/>
+	<!-- -->
+
+	<div data-ng-init="names=['braun','john','dave']">
+		<ul>
+			<li data-ng-repeat="personName in names">{{personName}}</li>
+		</ul>
+	</div>
+	<hr/>
+	<!-- -->
+
+	Name: <input type="text" data-ng-model="customerName"/>
+	<div data-ng-init="customers=[{name:'braun',city:'boston'},{name:'will',city:'new york'},{name:'sam',city:'los angeles'}]">
+		<ul>
+			<li data-ng-repeat="customer in customers | filter:customerName | orderBy:'city'">{{customer.name}} - {{customer.city | uppercase}}</li>
+		</ul>
+	</div>
+	<hr/>
+	<!-- -->
+
+	<!-- data is avaiable between elements, the scope is within the div from the div -->
+
+	Name: <input type="text" data-ng-model="cName"/>
+	<div data-ng-controller="SimpleController">
+		<ul>
+			<li data-ng-repeat="c in customers | filter:cName">
+				{{c.name}} - {{c.city}}
+			</li>
+		</ul>
+	</div>
+
+	<script>
+	// during init scope gets passed in, injected dynamially
+	function SimpleController ($scope) {
+		// $scope is automatically bound into the view
+		$scope.customers = [
+			{name:"Braun Goodson", city:"Boston"},
+			{name:"Will Donovan", city:"New York"},
+			{name:"Sam Graham", city:"Los Angeles"},
+			{name:"Sally Sue", city:"Houston"},
+			{name:"Mike Bryant", city:"Chicago"}
+		];
+	}
+	</script>
+
+	<hr/>
+	<!-- -->
+
+	<hr/>
+	<!-- -->
+
+	<hr/>
+	<!-- -->
+
+	<hr/>
+	<!-- -->
+
+	<hr/>
+	<!-- -->
+
+	<hr/>
+	<!-- -->
+
+</body>
+	<script src="angular.min.js"></script>
+</html>

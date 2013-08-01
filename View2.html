@@ -1,0 +1,13 @@
+<div data-ng-controller="SimpleController">
+	<h1>View 2</h1>
+
+	Filter City: <input type="text" data-ng-model="filter.customerCity"/>
+	
+	<div>
+		<ul>
+			<li data-ng-repeat="c in customers | filter:filter.customerCity">
+				{{c.name}} - {{c.city}}
+			</li>
+		</ul>
+	</div>
+</div>

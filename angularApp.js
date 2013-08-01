@@ -1,0 +1,6 @@
+<html>
+	<body>
+
+		<script src="angular.min.js"></script>
+	</body>
+</html>

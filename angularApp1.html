@@ -1,0 +1,54 @@
+<!doctype html>
+<html data-ng-app="demoApp">
+<body>
+
+	<a href="#/">View 1</a> | <a href="#/view2">View 2</a>
+
+	<div data-ng-view=""></div>
+
+	<script src="angular.min.js"></script>
+	
+	<script>
+
+	var demoApp = angular.module('demoApp',[]);
+
+	demoApp.config(function ($routeProvider) {
+		$routeProvider
+			.when('/',{
+				controller: 'SimpleController',
+				templateUrl: 'View1.html'
+			})
+			.when('/view2',{
+				controller: 'SimpleController',
+				templateUrl: 'View2.html'
+			})
+			.otherwise({redirectTo:'/'})
+	})
+
+	var controllers = {};
+
+	controllers.SimpleController = function ($scope) {
+
+		$scope.customers = [
+			{name:"Braun Goodson", city:"Boston"},
+			{name:"Will Donovan", city:"New York"},
+			{name:"Sam Graham", city:"Los Angeles"},
+			{name:"Sally Sue", city:"Houston"},
+			{name:"Mike Bryant", city:"Chicago"}
+		];
+		
+		$scope.addCustomer = function () {
+			$scope.customers.push({
+				name:$scope.newCustomer.Name,
+				city:$scope.newCustomer.City
+			})
+		};
+
+	};
+
+	demoApp.controller(controllers);
+
+	</script>
+
+</body>
+</html>

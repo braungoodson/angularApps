@@ -1,0 +1,161 @@
+ANGULAR.JS
+
+SPA-framwork: Single Page Application
+	- Shell page, load multiple views into it.
+	- great for mobile
+	- load views on the fly, embed into shell page
+
+Features
+	- two way data binding
+	- MVC
+	- routing of views into shell page
+	- testing
+	- jqlite mini jquery for dom manipulation
+	- factotries, share code
+	- directives: teach html new tricks
+	- dependency injection, run-time dynamic features
+
+CDN: hosted by google around the world, parallelism browsers able to load different scripts because they're different domains, caching benefits
+
+--
+
+Directives, Filters, and Data Bindings
+
+Directive: a way to teach HTML new tricks. extend html, adding attributes, elements, or comments
+
+e.g., <html ng-app>
+
+built in directive, you can write cusotm ones or third party ones.
+
+e.g., <input type="text" ng-model="name" /> {{name}}
+
+add a property in memory into the scope. making an empty view-model with the name value. then use data binding expression
+
+e.g., <html data-ng-app=""> for validation
+
+Filters: apply to things like strings
+
+e.g., using pipes |
+
+data binding statement and filter
+
+--
+
+
+MVC
+
+View - Controller
+
+Controller: logic, drives things, a container js object, what data gets bound into view, if the view passes data up into the ontroller then into a service then into a data store
+
+e.g., $scope i.e., the viewmodel
+
+it's the glue that ties controller to view. neither need to know about each other. $scope passes the data.
+
+the scope is the view odel. dependcy injection!, the variable is built into angular.
+
+
+--
+
+Modules, Routes and Factories
+
+Modularity and SPA-oriented concepts like Routes
+
+A module can have a config function to define routes. how to track what route we're on and what view is associated with it.
+
+we need to find a route in angular.js.
+
+controllers have a factory for data like crud. also known as services or providers, or resources.
+
+views have directives and filters.
+
+module object, form there you can create configs filters directives factories and controllers. it's an object container.
+
+e.g., var demoApp = angular.module('demoApp',[])
+
+use the array for dependency injection
+
+e.g., var demoApp = angular.module('demoApp',['helperModule'])
+
+make it available to all my module compoenents
+
+at run-time dynamically include other modules
+
+official controller creation
+
+demoApp.controller('SimpleController', function ($scope) {
+	$scope.customers = []
+})
+
+
+ROUTES - load different views into shell page
+
+when v1 is clicked we go to v2 ect. two ways to load. embeded as script template into shell page. then load by ID. second, on the server have the views, or partialViews, tell angular the URL and angular will load it.
+
+e.g., 
+
+demoApp.config(function ($routeProvider) {
+	$routeProvider
+		.when('/',{
+			controller: 'SimpleController',
+			templateUrl: 'View1.html'
+		})
+		.when('/partial2',{
+			controller: 'SimpleController',
+			templateUrl: 'View2.html'
+		})
+		.otherwise({redirectTo:'/'})
+})
+
+a way to glue a view to a controller
+
+reeves concepts, ability to encapulate data functionality into facotires services or providers
+
+factory: create object inside and return it
+
+service: standard function that uses this to define function
+
+provider: $get to define, used to get the object to return data
+
+value: config value,for versions
+
+allow to encapsulate common functionality, if i needed customers into each controller. factory is
+
+ue a module to define a factory
+
+demoApp.factory('simpleFactory', function () {
+	var factory = {};
+	var customers = [...];
+	factory.getCustomers = function () {
+		// real life, make async call, and return dsta
+		return customers;
+	}
+	return factory;
+})
+.controller('SimpleController',function ($scope,simpleFactory) {
+	$scope.customers = simpleFactory.getCustomers();
+}
+
+robust client-centric applications
+
+tinyurl.com/AngularJSDemos
+
+builtwith.angular.js
+angular-ui.io
+mgcrea.github.io/angular-strap
+pluralsight.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
